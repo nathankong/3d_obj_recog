@@ -64,7 +64,9 @@ def main(exp_id="exp01"):
 
 
 if __name__ == "__main__":
-    main(exp_id="exp03")
-    main(exp_id="exp04")
+    #main(exp_id="exp03")
+    #main(exp_id="exp04")
+    #main(exp_id="exp05")
+    main(exp_id="exp06")
 
 
