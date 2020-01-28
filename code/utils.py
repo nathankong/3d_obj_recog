@@ -125,7 +125,7 @@ def load_checkpoint(checkpoint_path):
 def check_best_accuracy(current_acc, best_acc):
     if current_acc > best_acc:
         return current_acc, True
-    return best_acc, false
+    return best_acc, False
 
 if __name__ == "__main__":
     im_dir = "/mnt/fs5/nclkong/datasets/bnn_dataset/"

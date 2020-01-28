@@ -181,7 +181,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    default_dataset_dir = "/mnt/fs5/nclkong/datasets/norb/"
+    default_dataset_dir = "/data5/nclkong/norb/"
     default_save_dir = "/mnt/fs5/nclkong/trained_models/norb/"
     parser.add_argument('--image-dir', type=str, default=default_dataset_dir)
     parser.add_argument('--save-dir', type=str, default=default_save_dir)
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     parser.add_argument('--kernel-size', type=int, default=19)
     parser.add_argument('--image-size', type=int, default=108)
     parser.add_argument('--batch-size', type=int, default=256)
-    parser.add_argument('--num-epochs', type=int, default=100)
+    parser.add_argument('--num-epochs', type=int, default=30)
     parser.add_argument('--lr', type=float, default=0.001)
     parser.add_argument('--exp-id', type=str, default="default")
     args = parser.parse_args()
