@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 
 class BinocularNetwork(nn.Module):
-    def __init__(self, n_filters=28, k_size=19, input_size=30):
+    def __init__(self, n_filters=28, n_latent=100, relu_latent=False, k_size=19, input_size=30):
         super(BinocularNetwork, self).__init__()
         assert k_size % 2 == 1, "Kernel/filter size must be odd!"
 
@@ -26,8 +26,14 @@ class BinocularNetwork(nn.Module):
             nn.MaxPool2d(2, stride=2, return_indices=False)
         )
         n_units = n_filters*(self.input_size-k_size+1)*(self.input_size-k_size+1) / 4
-        self.complex_unit = nn.Linear(n_units, 1000, bias=True)
-        self.classify = nn.Linear(1000, 6, bias=True)
+        if relu_latent:
+            self.complex_unit = nn.Sequential(
+                nn.Linear(n_units, n_latent, bias=True),
+                nn.ReLU(inplace=False)
+            )
+        else:
+            self.complex_unit = nn.Linear(n_units, n_latent, bias=True)
+        self.classify = nn.Linear(n_latent, 6, bias=True)
 
         print "Initialize simple units with Xavier initialization."
         self.simple_unit.apply(self._init_weights)

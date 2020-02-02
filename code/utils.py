@@ -71,13 +71,13 @@ def acquire_data_loaders(
 
     # Initialize data loaders
     train_data_loader = DataLoader(
-        train_set, batch_size=batch_size, shuffle=True, pin_memory=True, num_workers=4
+        train_set, batch_size=batch_size, shuffle=True, pin_memory=True, num_workers=8
     )
     test_data_loader = DataLoader(
-        test_set, batch_size=batch_size, shuffle=False, pin_memory=True, num_workers=4
+        test_set, batch_size=batch_size, shuffle=False, pin_memory=True, num_workers=8
     )
     val_data_loader = DataLoader(
-        val_set, batch_size=batch_size, shuffle=False, pin_memory=True, num_workers=4
+        val_set, batch_size=batch_size, shuffle=False, pin_memory=True, num_workers=8
     )
 
     return train_data_loader, test_data_loader, val_data_loader

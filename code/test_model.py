@@ -9,7 +9,7 @@ from utils import acquire_data_loaders
 
 # Use GPU or CPU
 if torch.cuda.is_available():
-    device = torch.device("cuda:{}".format(7))
+    device = torch.device("cuda:{}".format(8))
 else:
     device = torch.device("cpu")
 
@@ -24,11 +24,21 @@ def main(exp_id="exp01"):
     print("Training parameters:", params["train_params"])
 
     # Get model and load trained parameters and set in eval mode
-    m = BinocularNetwork(
-        n_filters=params["train_params"]["num_kernels"],
-        k_size=params["train_params"]["kernel_size"],
-        input_size=params["train_params"]["img_size"]
-    ).to(device)
+    # Hack for now just so the legacy trained models can be loaded.
+    if "num_latent" in params["train_params"].keys():
+        m = BinocularNetwork(
+            n_filters=params["train_params"]["num_kernels"],
+            k_size=params["train_params"]["kernel_size"],
+            input_size=params["train_params"]["img_size"],
+            n_latent = params["train_params"]["num_latent"],
+            relu_latent = True
+        ).to(device)
+    else:
+        m = BinocularNetwork(
+            n_filters=params["train_params"]["num_kernels"],
+            k_size=params["train_params"]["kernel_size"],
+            input_size=params["train_params"]["img_size"]
+        ).to(device)
     m.load_state_dict(params["state_dict"])
     m.eval()
 
@@ -67,6 +77,9 @@ if __name__ == "__main__":
     #main(exp_id="exp03")
     #main(exp_id="exp04")
     #main(exp_id="exp05")
-    main(exp_id="exp06")
+    #main(exp_id="exp06")
+    main(exp_id="exp07")
+    main(exp_id="exp08")
+    main(exp_id="exp09")
 
 

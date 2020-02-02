@@ -105,7 +105,9 @@ def train(train_params, num_epochs, device, verbose=True):
     m = BinocularNetwork(
         n_filters=train_params["num_kernels"],
         k_size=train_params["kernel_size"],
-        input_size=train_params["img_size"]
+        input_size=train_params["img_size"],
+        n_latent=train_params["num_latent"],
+        relu_latent=True # first few exps were not relu'd
     ).to(device)
 
     # Loss function
@@ -187,6 +189,7 @@ if __name__ == "__main__":
     parser.add_argument('--save-dir', type=str, default=default_save_dir)
     parser.add_argument('--cuda', type=int, default=0)
     parser.add_argument('--num-kernels', type=int, default=40)
+    parser.add_argument('--num-latent', type=int, default=1000)
     parser.add_argument('--kernel-size', type=int, default=19)
     parser.add_argument('--image-size', type=int, default=108)
     parser.add_argument('--batch-size', type=int, default=256)
@@ -214,6 +217,7 @@ if __name__ == "__main__":
     train_params["image_dir"] = args.image_dir
     train_params["save_dir"] = save_dir
     train_params["num_kernels"] = int(args.num_kernels)
+    train_params["num_latent"] = int(args.num_latent)
     train_params["kernel_size"] = int(args.kernel_size)
     train_params["img_size"] = int(args.image_size)
     train_params["batch_size"] = int(args.batch_size)
