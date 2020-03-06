@@ -15,7 +15,6 @@ from model import BinocularNetwork
 from utils import \
     acquire_data_loaders, \
     compute_num_correct, \
-    print_update, \
     save_checkpoint, \
     check_best_accuracy
 

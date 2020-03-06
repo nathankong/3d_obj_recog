@@ -5,7 +5,7 @@ import torch.nn as nn
 torch.manual_seed(0)
 
 from model import BinocularNetwork
-from utils import acquire_data_loaders
+from dataloader_utils import acquire_data_loaders
 
 # Use GPU or CPU
 if torch.cuda.is_available():
@@ -78,8 +78,10 @@ if __name__ == "__main__":
     #main(exp_id="exp04")
     #main(exp_id="exp05")
     #main(exp_id="exp06")
-    main(exp_id="exp07")
-    main(exp_id="exp08")
-    main(exp_id="exp09")
+    #main(exp_id="exp07")
+    #main(exp_id="exp08")
+    #main(exp_id="exp09")
+    #main(exp_id="exp10")
+    main(exp_id="test")
 
 
