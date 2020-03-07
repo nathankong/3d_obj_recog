@@ -16,26 +16,25 @@ def load_config():
 
     config = dict()
     config["image_dir"] = "/data5/nclkong/norb/"
-    config["exp_id"] = "exp11_nlatent_50"
+    config["exp_id"] = "exp12_nlatent_100"
     config["save_dir"] = "/mnt/fs5/nclkong/trained_models/norb/"
     config["dataset"] = "norb"
     config["cuda"] = 1
     config["device_ids"] = None # TODO
     config["num_workers"] = 8
-    #config["resume"] = ""
-    config["resume"] = "/mnt/fs5/nclkong/trained_models/norb/exp11_nlatent_50/checkpoint.pt"
-    config["batch_size"] = 512
-    config["num_epochs"] = 30
-    config["learning_rate"] = 0.01
-    config["lr_stepsize"] = 5
-    config["lr_gamma"] = 0.5
-    config["scheduler"] = "step"
+    config["resume"] = ""
+    config["batch_size"] = 256
+    config["num_epochs"] = 75
+    config["learning_rate"] = 0.002
+    config["lr_stepsize"] = 10
+    config["lr_gamma"] = 0.9
+    config["scheduler"] = "plateau"
     config["weight_decay"] = 0.0001
-    config["momentum"] = 0.9
+    config["momentum"] = 0
     config["num_kernels"] = 16
     config["kernel_size"] = 19
     config["img_size"] = 108
-    config["num_latent"] = 50
+    config["num_latent"] = 100
 
     tr, _, va = acquire_data_loaders(config["image_dir"], config["batch_size"], do_transforms=False)
     config["dataloaders"] = {"train": tr, "val": va}
@@ -45,7 +44,7 @@ def load_config():
         k_size=config["kernel_size"],
         input_size=config["img_size"],
         n_latent=config["num_latent"],
-        relu_latent=True # first few exps were not relu'd
+        relu_latent=True
     )
 
     optimizer = optim.SGD(
@@ -57,7 +56,7 @@ def load_config():
     config["optimizer"] = optimizer
 
     if config["scheduler"] == "plateau":
-        scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, "min")
+        scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, "min", patience=8, verbose=True)
     elif config["scheduler"] == "step":
         scheduler = optim.lr_scheduler.StepLR(
             optimizer,

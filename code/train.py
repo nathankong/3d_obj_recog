@@ -146,7 +146,7 @@ def train(m, train_params, num_epochs, device, save_dir, device_ids):
         )
 
         # Do a validation step
-        _, test_top1 = test_step(
+        test_loss, test_top1 = test_step(
             m,
             val_loader,
             loss_func,
