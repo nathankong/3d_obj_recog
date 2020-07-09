@@ -197,10 +197,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     #### Load config file and set random seed
+    seed_torch(seed=int(args.seed))
     cfg_fname = args.config.split('/')[-1]
     cfg = imp.load_source("configs", args.config)
     cfg = cfg.load_config()
-    seed_torch(seed=int(args.seed))
 
     #### Use GPU or CPU
     if torch.cuda.is_available():

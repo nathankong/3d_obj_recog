@@ -16,15 +16,15 @@ def load_config():
 
     config = dict()
     config["image_dir"] = "/data5/nclkong/norb/"
-    config["exp_id"] = "exp12_nlatent_100"
+    config["exp_id"] = "exp14_nlatent_100"
     config["save_dir"] = "/mnt/fs5/nclkong/trained_models/norb/"
     config["dataset"] = "norb"
-    config["cuda"] = 1
+    config["cuda"] = 9
     config["device_ids"] = None # TODO
     config["num_workers"] = 8
     config["resume"] = ""
     config["batch_size"] = 256
-    config["num_epochs"] = 75
+    config["num_epochs"] = 60
     config["learning_rate"] = 0.002
     config["lr_stepsize"] = 10
     config["lr_gamma"] = 0.9

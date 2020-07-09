@@ -84,6 +84,8 @@ if __name__ == "__main__":
     #main(exp_id="exp10")
     #main(exp_id="test")
     #main(exp_id="exp11_nlatent_50")
-    main(exp_id="exp12_nlatent_100")
+    #main(exp_id="exp12_nlatent_100")
+    #main(exp_id="exp13_nlatent_100")
+    main(exp_id="exp14_nlatent_100")
 
 

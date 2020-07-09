@@ -2,3 +2,4 @@ objrec3d/
 out*
 *.pyc
 Out*
+*.pt
